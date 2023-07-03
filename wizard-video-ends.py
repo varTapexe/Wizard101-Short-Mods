@@ -6,7 +6,6 @@ Wizard101 but if I hear the word Wizard the video ends.
                 an npc says
 """
 
-
 import asyncio
 import keyboard
 import subprocess
@@ -102,6 +101,14 @@ async def main():
             else:
                 print("Waiting to pick dialogue...")
             if "wizard" in txt.lower():
+                words = txt.lower().split(" ")
+                index = 0
+                for word in words:
+                    if word == "wizard":
+                        word_num = index
+                    index += 1
+                print("DETECTED Wizard: closing in " + f'{word_num}')
+                await asyncio.sleep(word_num / 2.5)
                 pyautogui.hotkey("alt", "f4")
                 exit()
             await asyncio.sleep(1) 
